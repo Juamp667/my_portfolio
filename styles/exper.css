@@ -34,6 +34,7 @@
     scrollbar-width: thin; /* Firefox */
     scrollbar-color: #2e537d #1c1c1b; /* thumb + track */
 
+
     mask-image: linear-gradient(
       to right,
       transparent 0%,
@@ -89,11 +90,7 @@
     align-items: center;
     min-height: fit-content;
 
-    > div {
-      width: fit-content;
-      min-width: 500px;
-      height: 100%;
-    }
+
 
     .vArrow {
       position: relative;
@@ -159,7 +156,12 @@
 }
 @media (max-width: 700px){
   .card{
-    max-width:70vw;
-    min-width: 200px;
+    max-width: 80vw;
+    min-width: 250px;
+  }
+  .legend{
+  margin: 0px;
+  justify-self: center;
+  margin-top: 32px;
   }
 }
