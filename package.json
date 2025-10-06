@@ -4,13 +4,10 @@
   "private": true,
   "homepage": "https://Juamp667.github.io/my_portfolio",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-},
+    "build": "next build && next export",
+    "deploy": "gh-pages -d out",
+    "dev": "next dev"
+  },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
     "@radix-ui/react-accordion": "1.2.2",
