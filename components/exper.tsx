@@ -50,7 +50,7 @@ export function LifePath() {
           directionRef.current = "forward";
         }
       }
-    }, 20);
+    }, 30);
 
     return () => clearInterval(interval);
   }, []);

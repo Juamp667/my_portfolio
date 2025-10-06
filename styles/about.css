@@ -63,8 +63,8 @@
       justify-content: center;
     }
     .imgCont{
-      height: fit-content;
-      min-height: 200px;
+      min-height: 350px;
+      max-height: 350px;
     }
   }
 }

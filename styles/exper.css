@@ -122,7 +122,7 @@
   font-size: 14px;
   margin-right: 75px;
   width: max-content;
-  padding: 5px;
+  padding: 10px;
 
   background-color:#6a6a6a;
   border-radius:25px;
@@ -147,8 +147,9 @@
 }
 @media (max-width: 700px){
   .card{
-    max-width: 80vw;
-    min-width: 250px;
+    max-width: 82vw;
+    min-width: 270px;
+    width: 100%;
   }
   .legend{
     margin: 0px;
@@ -156,9 +157,15 @@
   .pauseButtonCont,.legendCont{
   margin: 0px;
   display: grid;
-  justify-content: start;
-  margin-left: 10vw;
-  margin-top: 20px;
+  justify-content: center;
+  width: 99vw;
+  }
+  .pauseButtonCont{margin-top: 30px;}
+
+  #exper>.title{
+    padding-left: 0px;
+    margin-top: 30px;
+    text-align: center;
   }
 }
 
@@ -168,7 +175,7 @@
 }
 
 .pauseButtonCont button {
-  background-color: #2e537d;
+  background-color: #2e537d6a;
   color: white;
   border: none;
   border-radius: 8px;
