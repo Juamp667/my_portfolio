@@ -1,0 +1,159 @@
+@keyframes scrollLoop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+#exper {
+  min-height: fit-content;
+  background-color: #1c1c1b;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  > .i1 {
+    padding: 30px 0px 0px 50px;
+    > b { font-size: 30px; }
+    height: 50px;
+  }
+
+  .title {
+    font-size: 24px;
+    opacity: 65%;
+    padding-left: 75px;
+  }
+
+  .sliderCont {
+    margin: 0 5vw 50px 5vw;
+    width: 90vw;
+    padding-bottom: 50px;
+    overflow-x: scroll;
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #2e537d #1c1c1b; /* thumb + track */
+
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 5%,
+      black 95%,
+      transparent
+    );
+    
+  }
+
+
+  .formativa {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    position: relative;
+
+
+
+    &:hover {
+      animation-play-state: paused;
+    }
+
+    > div {
+      border-right: 2px solid #2e537d7f;
+      padding: 0px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 600px;
+    }
+
+    .i {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .doubleDate {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      justify-content: center;
+    }
+  }
+
+  > .profesional {
+    margin: 0 7.5vw 50px 7.5vw;
+    padding-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: fit-content;
+
+    > div {
+      width: fit-content;
+      min-width: 500px;
+      height: 100%;
+    }
+
+    .vArrow {
+      position: relative;
+      display: inline-block;
+      max-width: 3px;
+      min-width: 3px;
+      height: 50px;
+      background-color: white;
+      margin-top: 9px;
+      margin-bottom: 2px;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: -6px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-bottom: 10px solid white;
+      }
+    }
+  }
+}
+
+.dateBox {
+  background-color: #264a72;
+  border: 2px solid white;
+  border-radius: 30px;
+  padding: 5px 30px;
+  font-weight: 700;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.legend{
+
+  font-size: 14px;
+  margin-right: 75px;
+  width: max-content;
+  padding: 5px;
+
+  background-color:#6a6a6a;
+  border-radius:25px;
+
+  display:flex;
+  flex-direction:row;
+  gap:15px;
+
+  align-self:start;
+  justify-self:end;
+
+  color:#d1d1d1;
+
+  >div{
+    display:flex;
+    gap:10px;
+  }
+}
