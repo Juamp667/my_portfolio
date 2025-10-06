@@ -168,9 +168,3 @@ Button{
   width: fit-content;
   padding:5px;
 }
-@media (max-width: 700px){
-  .card{
-    max-width: 80vw;
-    min-width: 250px;
-  }
-}

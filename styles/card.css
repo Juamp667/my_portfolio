@@ -93,3 +93,17 @@
     opacity:0.9;
   }
 }
+.detail p {
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+.detail ul {
+  padding-left: 20px;
+  margin: 6px 0;
+  list-style-type: disc;
+}
+
+.detail li {
+  margin-bottom: 4px;
+}

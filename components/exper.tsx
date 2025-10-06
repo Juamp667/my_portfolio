@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CardExper } from "./card";
 import "../styles/exper.css";
 
@@ -14,17 +14,16 @@ function DateBox({ date }: DateBoxProps) {
 
 export function LifePath() {
   const sliderRef = useRef<HTMLDivElement>(null);
-  const pausedRef = useRef(false); // mantiene pausa sin provocar re-render
-  const directionRef = useRef<"forward" | "backward">("forward"); // mantiene dirección entre frames
+  const pausedRef = useRef(false);
+  const directionRef = useRef<"forward" | "backward">("forward");
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
     const slider = sliderRef.current;
     if (!slider) return;
 
     const speed = 2;
-    let interval: NodeJS.Timeout;
-
-    const autoScroll = () => {
+    const interval = setInterval(() => {
       if (pausedRef.current) return;
 
       if (directionRef.current === "forward") {
@@ -38,44 +37,27 @@ export function LifePath() {
           directionRef.current = "forward";
         }
       }
-    };
+    }, 20);
 
-    interval = setInterval(autoScroll, 20);
+    return () => clearInterval(interval);
+  }, []);
 
-    const pauseScroll = () => {
-      pausedRef.current = true;
-    };
-    const resumeScroll = () => {
-      pausedRef.current = false;
-    };
-    const toggleScroll = () => {
-      pausedRef.current = !pausedRef.current;
-    };
-
-    slider.addEventListener("mouseenter", pauseScroll);
-    slider.addEventListener("mouseleave", resumeScroll);
-    slider.addEventListener("mousedown", pauseScroll);
-    slider.addEventListener("touchstart", pauseScroll);
-    slider.addEventListener("mouseup", resumeScroll);
-    slider.addEventListener("touchend", resumeScroll);
-    slider.addEventListener("click", toggleScroll);
-
-    return () => {
-      clearInterval(interval);
-      slider.removeEventListener("mouseenter", pauseScroll);
-      slider.removeEventListener("mouseleave", resumeScroll);
-      slider.removeEventListener("mousedown", pauseScroll);
-      slider.removeEventListener("touchstart", pauseScroll);
-      slider.removeEventListener("mouseup", resumeScroll);
-      slider.removeEventListener("touchend", resumeScroll);
-      slider.removeEventListener("click", toggleScroll);
-    };
-  }, []); // sin dependencias -> no se reinicia
+  const togglePause = () => {
+    pausedRef.current = !pausedRef.current;
+    setIsPaused(pausedRef.current);
+  };
 
   return (
     <section id="exper">
       <div className="i1">
         <b>Experiencia</b>
+      </div>
+
+      {/* 🔘 Botón de pausa/reanudación */}
+      <div className="pauseButtonCont">
+        <button onClick={togglePause}>
+          {isPaused ? "▶️ Reanudar" : "⏸️ Pausar movimiento"}
+        </button>
       </div>
 
       <div className="legendCont">
@@ -118,7 +100,7 @@ export function LifePath() {
         <b>Formativa</b>
       </div>
 
-      {/* 🔽 Auto-scroll bidireccional con pausa al hover */}
+      {/* 🔽 Auto-scroll bidireccional con pausa al hover y botón */}
       <div className="sliderCont" ref={sliderRef}>
         <div className="formativa">
           <div className="i 2025">
@@ -135,7 +117,15 @@ export function LifePath() {
               title="PyTorch for Deep Learning Bootcamp (Udemy)"
               date="Sept. 2025 - actualidad / 52h"
               finished={false}
-              description="Formación intensiva en aprendizaje profundo con PyTorch, centrada en la implementación de redes neuronales, optimización de modelos y proyectos reales de visión por computador."
+              description={`
+                <p>Aprendizaje profundo con PyTorch:</p>
+                <ul>
+                  <li>Redes convolucionales (CNN)</li>
+                  <li>Redes recurrentes (RNN)</li>
+                  <li>Transfer learning</li>
+                </ul>
+                <p>Enfoque práctico con proyectos reales.</p>
+              `}
             />
             <CardExper
               imgSrc="/images/cambridgeLogo.png"

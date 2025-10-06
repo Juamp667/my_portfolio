@@ -8,11 +8,17 @@ type CardProps = {
   date: string;
   addStyle?: React.CSSProperties;
   finished?: boolean;
-  description?: string;
+  description?: string; // ahora será HTML
 }
 
-export function CardExper({imgSrc, title, date, addStyle, finished = true, description = ""}: CardProps) {
-  // finished: true -> completed, false -> in-progress
+export function CardExper({
+  imgSrc,
+  title,
+  date,
+  addStyle,
+  finished = true,
+  description = ""
+}: CardProps) {
   const [expanded, setExpanded] = useState(false);
   const className = `card ${finished ? "" : "in-progress"} ${expanded ? "expanded" : ""}`.trim();
 
@@ -34,13 +40,20 @@ export function CardExper({imgSrc, title, date, addStyle, finished = true, descr
           <p>{date}</p>
         </div>
 
-        <div className="detail" aria-hidden={!expanded}>
-          {description && <p>{description}</p>}
-        </div>
+        {/* 🔽 Renderizar como HTML puro */}
+        <div
+          className="detail"
+          aria-hidden={!expanded}
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
       </div>
 
       <div className="actions">
-        <button className="expand-button" aria-expanded={expanded} onClick={() => setExpanded(v => !v)}>
+        <button
+          className="expand-button"
+          aria-expanded={expanded}
+          onClick={() => setExpanded(v => !v)}
+        >
           <p>▾ {expanded ? "Cerrar" : "Expandir"}</p>
         </button>
       </div>
