@@ -17,7 +17,20 @@ export function LifePath() {
   const pausedRef = useRef(false);
   const directionRef = useRef<"forward" | "backward">("forward");
   const [isPaused, setIsPaused] = useState(false);
+  const [showPauseButton, setShowPauseButton] = useState(false);
 
+  // 🔹 Mostrar u ocultar botón de pausa según el ancho de pantalla
+  useEffect(() => {
+    const updateButtonVisibility = () => {
+      setShowPauseButton(window.innerWidth < 1024);
+    };
+
+    updateButtonVisibility();
+    window.addEventListener("resize", updateButtonVisibility);
+    return () => window.removeEventListener("resize", updateButtonVisibility);
+  }, []);
+
+  // 🔹 Movimiento automático bidireccional
   useEffect(() => {
     const slider = sliderRef.current;
     if (!slider) return;
@@ -42,9 +55,19 @@ export function LifePath() {
     return () => clearInterval(interval);
   }, []);
 
+  // 🔹 Botón de pausa manual
   const togglePause = () => {
     pausedRef.current = !pausedRef.current;
     setIsPaused(pausedRef.current);
+  };
+
+  // 🔹 Pausa al pasar el ratón por encima del slider
+  const handleMouseEnter = () => {
+    pausedRef.current = true;
+  };
+
+  const handleMouseLeave = () => {
+    pausedRef.current = isPaused; // si estaba pausado manualmente, sigue pausado
   };
 
   return (
@@ -53,12 +76,14 @@ export function LifePath() {
         <b>Experiencia</b>
       </div>
 
-      {/* 🔘 Botón de pausa/reanudación */}
-      <div className="pauseButtonCont">
-        <button onClick={togglePause}>
-          {isPaused ? "▶️ Reanudar" : "⏸️ Pausar movimiento"}
-        </button>
-      </div>
+      {/* 🔘 Botón de pausa solo en pantallas <1024px */}
+      {showPauseButton && (
+        <div className="pauseButtonCont">
+          <button onClick={togglePause}>
+            {isPaused ? "▶️ Reanudar" : "⏸️ Pausar movimiento"}
+          </button>
+        </div>
+      )}
 
       <div className="legendCont">
         <div
@@ -100,8 +125,13 @@ export function LifePath() {
         <b>Formativa</b>
       </div>
 
-      {/* 🔽 Auto-scroll bidireccional con pausa al hover y botón */}
-      <div className="sliderCont" ref={sliderRef}>
+      {/* 🔽 Slider con pausa al hover */}
+      <div
+        className="sliderCont"
+        ref={sliderRef}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         <div className="formativa">
           <div className="i 2025">
             <DateBox date={2025} />
