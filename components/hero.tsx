@@ -99,7 +99,7 @@ export function Hero() {
 
             <div className="i2 resumen">
               <p>
-                Graduado en <a href="https://grados.ugr.es/fisica">Física por la Universidad de Granada</a>. Actualmente cursando el <a href="https://masteres.ugr.es/datcom"> máster en Ciencia de Datos e Ingerniería de Computadores </a> de la
+                Graduado en <a href="https://grados.ugr.es/fisica">Física por la Universidad de Granada</a>. Actualmente cursando el <a href="https://masteres.ugr.es/datcom"> máster en Ciencia de Datos e Ingeniería de Computadores </a> de la
                 misma universidad, con el objetivo de impactar el entorno social y económico a partir de la explotación del dato.
               </p>
             </div>

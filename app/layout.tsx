@@ -7,9 +7,8 @@ import { Suspense } from "react"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Juamp Web Portfolio"
-}
-
+    title: "JuampPortfolio"
+  }
 export default function RootLayout({
   children,
 }: Readonly<{

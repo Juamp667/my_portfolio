@@ -2,6 +2,7 @@
 
 import "../styles/navigation.css"
 
+import Link from "next/link"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 
@@ -67,16 +68,28 @@ export function Navigation() {
 
         <div className="buttons">
           {navItems.map((item) => (
-            <Button
-              key={item.name}
+            <Link href="/" legacyBehavior>
+              <Button
+                key={item.name}
+                variant="ghost"
+                size="sm"
+                style={{cursor:"pointer"}}
+                onClick={() => scrollToSection(item.href)}
+              >
+                {item.name}
+              </Button>
+            </Link>
+
+          ))}
+          <Link href="/projects" legacyBehavior>
+            <Button 
               variant="ghost"
               size="sm"
               style={{cursor:"pointer"}}
-              onClick={() => scrollToSection(item.href)}
             >
-              {item.name}
+              Proyectos
             </Button>
-          ))}
+          </Link>
         </div>
         
       </div>

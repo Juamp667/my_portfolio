@@ -57,13 +57,18 @@ nav{
 
 
     @media(max-width: 664px){
+        .name{
+            display: none;
+            
+        }
         .buttons{
             gap:0px;
-            >Button{
-            font-size: 3vw;
+            
+            button{
+                max-width: min-content;
+                font-size: 14px;
             }
         }
     }
 
 }
-
