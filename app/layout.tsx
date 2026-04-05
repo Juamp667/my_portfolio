@@ -7,8 +7,11 @@ import { Suspense } from "react"
 import "./globals.css"
 
 export const metadata: Metadata = {
-    title: "JuampPortfolio"
-  }
+  title: "JuampPortfolio",
+  other: {
+    "google-site-verification": "8XNRsv-FxVU331cvEx13OUeqCqs9eONIfp1gMG6qx50",
+  },
+}
 export default function RootLayout({
   children,
 }: Readonly<{
